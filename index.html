@@ -1,18 +1,48 @@
 
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>云顶工作室官网github版</title>
+    <title>云顶工作室链接墙github</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #ADD8E6; /* 浅蓝色背景 */
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            color: #333; /* 深色文本 */
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #0056b3; /* 悬停时按钮颜色变化 */
+        }
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .link {
             background-color: #fff;
@@ -23,10 +53,11 @@
             width: 200px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            transition: transform 0.2s, background-color 0.3s;
         }
         .link:hover {
             transform: scale(1.05);
+            background-color: #e0e0e0; /* 悬停时背景颜色变化 */
         }
         a {
             text-decoration: none;
@@ -36,31 +67,56 @@
         .copyright {
             margin-top: 20px;
             font-size: 14px;
-            color: #777;
+            color: #333; /* 版权文本颜色保持为深色 */
         }
     </style>
 </head>
 <body>
+搜索
+    <div class="search-container">
+        <input type="text" class="search-input" id="search-input" placeholder="输入网址或关键词">
+        <button class="search-button" onclick="searchWebsite()">搜索</button>
+    </div>
 
-    <div class="link">
-        <a href="https://lcim.guozhufeng.com" target="_blank">凌cim电脑版</a>
-    </div>
-    <div class="link">
-        <a href="https://h5.lcim.site"target="_blank">凌cim手机版</a>
-    </div>
-    <div class="link">
-        <a href="https://baidu.com" target="_blank">百毒，毒死你</a>
-    </div>
-    <div class="link">
-        <a href="https://kdgzswsz.github.io" target="_blank">可多工作室官网</a>
-    </div>
-    <div class="link">
-        <a href="https://ebing.com" target="_blank">必应</a>
+    <div class="links-container">
+        <div class="link">
+            <a href="https://code.xueersi.com" target="_blank">学而思编程</a>
+        </div>
+        <div class="link">
+            <a href="https://kdgzswsz.github.io" target="_blank">可多工作室官网</a>
+        </div>
+        <div class="link">
+            <a href="https://baidu.com" target="_blank">百毒，毒死你</a>
+        </div>
+        <div class="link">
+            <a href="https://bing.com" target="_blank">必应</a>
+        </div>
+        <div class="link">
+            <a href="www.douyin.com" target="_blank">抖音</a>
+        </div>
     </div>
 
     <div class="copyright">
-        &copy; 2024 云顶工作室 所有. 保留所有权利.
+        &copy; 2024 云顶工作室（陈飞鸣）所有. 保留所有权利.
     </div>
+
+    <script>
+        function searchWebsite() {
+            const input = document.getElementById('search-input').value;
+            if (input) {
+                // 如果输入的是网址，直接打开；否则进行 Google 搜索
+                const urlPattern = /^(http|https):\/\/[^ "]+$/;
+                if (urlPattern.test(input)) {
+                    window.open(input, '_blank');
+                } else {
+                    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input)}`;
+                    window.open(searchUrl, '_blank');
+                }
+            } else {
+                alert('请输入网址或关键词');
+            }
+        }
+    </script>
 
 </body>
 </html>
