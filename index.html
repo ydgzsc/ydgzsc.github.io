@@ -75,11 +75,18 @@
         <input type="text" class="search-input" id="search-input" placeholder="输入网址或关键词">
         <button class="search-button" onclick="searchWebsite()">搜索</button>
     </div>
-
-    <div class="links-container">
+            <h3>我过生日啦</h3>
+       <div class="link">
+             <a href="https://bing.com" target="_blank">必应</a>
+          </div>
+ 
+        <div class="links-container">
         <div class="link">
             <a href="https://code.xueersi.com" target="_blank">学而思编程</a>
         </div>
+        <div class="link">
+             <a href="https://ydgzscc.github.io/shengri" target="_blank">生日倒计时 必须看</a>
+          </div>
         <div class="link">
             <a href="https://kdgzswsz.github.io" target="_blank">可多工作室官网</a>
         </div>
@@ -130,7 +137,7 @@
                 if (urlPattern.test(input)) {
                     window.open(input, '_blank');
                 } else {
-                    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input)}`;
+                    const searchUrl = `https://bing.cn/search?q=${encodeURIComponent(input)}`;
                     window.open(searchUrl, '_blank');
                 }
             } else {
