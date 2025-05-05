@@ -3,148 +3,354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>云顶工作室链接墙github</title>
+    <title>云顶工作室链接墙</title>
     <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --background-color: #f5f9fc;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #777777;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            background-color: #ADD8E6; /* 浅蓝色背景 */
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .search-container {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-button {
+            padding: 0 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .search-button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .category {
+            margin-bottom: 40px;
+        }
+        
+        .category-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .link-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            color: #333; /* 深色文本 */
-        }
-        .search-container {
-            margin-bottom: 20px;
-        }
-        .search-input {
-            padding: 10px;
-            width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .search-button {
-            padding: 10px 15px;
-            margin-left: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .search-button:hover {
-            background-color: #0056b3; /* 悬停时按钮颜色变化 */
-        }
-        .links-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .link {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 10px;
-            padding: 20px;
-            width: 200px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, background-color 0.3s;
         }
-        .link:hover {
-            transform: scale(1.05);
-            background-color: #e0e0e0; /* 悬停时背景颜色变化 */
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+        
+        .link-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+            background-color: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 20px;
         }
-        .copyright {
-            margin-top: 20px;
+        
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        
+        .link-url {
+            color: var(--light-text);
             font-size: 14px;
-            color: #333; /* 版权文本颜色保持为深色 */
+            word-break: break-all;
+            margin-bottom: 15px;
+        }
+        
+        .link-button {
+            padding: 8px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .link-button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 0;
+            color: var(--light-text);
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .links-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .search-button {
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
-搜索
-    <div class="search-container">
-        <input type="text" class="search-input" id="search-input" placeholder="输入网址或关键词">
-        <button class="search-button" onclick="searchWebsite()">搜索</button>
-    </div>
-            <h2>我要过生日啦</h2>
-       <div class="link">
-             <a href="https://ydgzscc.github.io/shengri" target="_blank">陈飞鸣过生日倒计时 必须看哦</a>
-          </div>
-       <div class="link">
-             <a href="https://ydgzscc.github.io" target="_blank">陈飞鸣另一个官网</a>
-          </div>
- 
-        <div class="links-container">
-        <div class="link">
-            <a href="https://code.xueersi.com" target="_blank">学而思编程</a>
+    <div class="container">
+        <header>
+            <h1>云顶工作室资源导航（进去找到论坛进入）</h1>
+            <p class="description">快速访问常用网站和工作室项目资源</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-input" placeholder="输入网址或关键词搜索...">
+                <button class="search-button" onclick="searchWebsite()">搜索</button>
+            </div>
+        </header>
+        
+        <div class="category">
+            <h2 class="category-title">个人项目</h2>
+            <div class="links-grid">
+                <div class="link-card">
+                    <div class="link-icon">🎂</div>
+                    <h3 class="link-title">生日倒计时</h3>
+                    <p class="link-url">ydgzscc.github.io/shengri</p>
+                    <a href="https://ydgzscc.github.io/shengri" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">🏠</div>
+                    <h3 class="link-title">个人官网</h3>
+                    <p class="link-url">ydgzscc.github.io</p>
+                    <a href="https://ydgzscc.github.io" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">🌐</div>
+                    <h3 class="link-title">云顶浏览器(测试)</h3>
+                    <p class="link-url">ydgzsc.github.io/llq</p>
+                    <a href="https://ydgzsc.github.io/llq" target="_blank" class="link-button">访问</a>
+                </div>
+            </div>
         </div>
-        <div class="link">
-             <a href="https://bing.cn" target="_blank">必应</a>
-          </div>
-        <div class="link">
-            <a href="https://kdgzswsz.github.io" target="_blank">可多工作室官网</a>
+
+                <div class="link-card">
+                    <div class="link-icon"></div>
+                    <h3 class="link-title">陈飞鸣的 雨云论坛 （必看）</h3>
+                    <p class="link-url">ydgzsc.github.io/llq</p>
+                    <a href="https://ydgzsc.github.io/llq" target="_blank" class="link-button">访问</a>
+                </div>
+            </div>
         </div>
-        <div class="link">
-            <a href="https://baidu.com" target="_blank">百毒，毒死你</a>
+        
+        
+        <div class="category">
+            <h2 class="category-title">工作室与合作伙伴</h2>
+            <div class="links-grid">
+                <div class="link-card">
+                    <div class="link-icon">🚀</div>
+                    <h3 class="link-title">可多工作室官网</h3>
+                    <p class="link-url">kdgzswsz.github.io</p>
+                    <a href="https://kdgzswsz.github.io" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">🛠️</div>
+                    <h3 class="link-title">秋水资源(工具箱)</h3>
+                    <p class="link-url">qiushuizy.com</p>
+                    <a href="https://qiushuizy.com" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">💻</div>
+                    <h3 class="link-title">凌CIM(电脑版)</h3>
+                    <p class="link-url">lcim.guozhufeng.com</p>
+                    <a href="https://lcim.guozhufeng.com" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">📱</div>
+                    <h3 class="link-title">凌CIM(手机版)</h3>
+                    <p class="link-url">h5.lcim.site</p>
+                    <a href="https://h5.lcim.site" target="_blank" class="link-button">访问</a>
+                </div>
+            </div>
         </div>
-        <div class="link">
-            <a href="https://bing.com" target="_blank">必应</a>
+        
+        <div class="category">
+            <h2 class="category-title">搜索引擎</h2>
+            <div class="links-grid">
+                <div class="link-card">
+                    <div class="link-icon">🔍</div>
+                    <h3 class="link-title">必应搜索</h3>
+                    <p class="link-url">bing.com</p>
+                    <a href="https://bing.com" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">⚠️</div>
+                    <h3 class="link-title">百度搜索</h3>
+                    <p class="link-url">baidu.com</p>
+                    <a href="https://baidu.com" target="_blank" class="link-button">访问</a>
+                </div>
+            </div>
         </div>
-        <div class="link">
-            <a href="https://www.douyin.com" target="_blank">抖音</a>
-          </div>
-        <div class="link">
-            <a href="https://ydgzsc.github.io/llq" target="_blank">云顶工作室（陈飞鸣）浏览器（测试）</a>      
+        
+        <div class="category">
+            <h2 class="category-title">学习与娱乐</h2>
+            <div class="links-grid">
+                <div class="link-card">
+                    <div class="link-icon">👨‍💻</div>
+                    <h3 class="link-title">学而思编程</h3>
+                    <p class="link-url">code.xueersi.com</p>
+                    <a href="https://code.xueersi.com" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">🎮</div>
+                    <h3 class="link-title">和平精英</h3>
+                    <p class="link-url">gp.qq.com</p>
+                    <a href="https://gp.qq.com" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">🎵</div>
+                    <h3 class="link-title">抖音</h3>
+                    <p class="link-url">douyin.com</p>
+                    <a href="https://www.douyin.com" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">🎬</div>
+                    <h3 class="link-title">快手</h3>
+                    <p class="link-url">kuaishou.com</p>
+                    <a href="https://kuaishou.com" target="_blank" class="link-button">访问</a>
+                </div>
+                
+                <div class="link-card">
+                    <div class="link-icon">👟</div>
+                    <h3 class="link-title">安踏官网</h3>
+                    <p class="link-url">anta.com</p>
+                    <a href="https://anta.com" target="_blank" class="link-button">访问</a>
+                </div>
+            </div>
         </div>
-        <div class="link">
-            <a href="https://kuaishou.com" target="_blank">慢脚（快手）</a>
-        </div>
-        <div class="link">
-            <a href="https://anta.com" target="_blank">安踏</a>
-        </div>
-        <div class="link">
-            <a href="https://gp.qq.com" target="_blank">和平精英</a>
-        </div>
-        <div class="link">
-            <a href="https://lcim.guozhufeng.com" target="_blank">凌cim（电脑版）</a>
-        </div>
-        <div class="link">
-            <a href="https://h5.lcim.site" target="_blank">凌cim（手机版）</a>
-        </div>
-        <div class="link">
-            <a href="https://qiushuizy.com" target="_blank">秋水资源（工具箱）</a>
-        </div>
-        <div class="link">
-            <div class="copyright">
-        &copy; 版权2024—2025归云顶工作室（陈飞鸣）所有. 保留所有权利.更新中……敬请期待……谢谢支持！
+        
+        <footer>
+            <p>&copy; 2024-2025 云顶工作室(陈飞鸣) 版权所有 | 持续更新中，敬请期待...</p>
+        </footer>
     </div>
 
     <script>
         function searchWebsite() {
-            const input = document.getElementById('search-input').value;
-            if (input) {
-                // 如果输入的是网址，直接打开；否则进行 Google 搜索
-                const urlPattern = /^(http|https):\/\/[^ "]+$/;
-                if (urlPattern.test(input)) {
-                    window.open(input, '_blank');
-                } else {
-                    const searchUrl = `https://bing.cn/search?q=${encodeURIComponent(input)}`;
-                    window.open(searchUrl, '_blank');
-                }
-            } else {
-                alert('请输入网址或关键词');
+            const input = document.getElementById('search-input').value.trim();
+            if (!input) {
+                alert('请输入搜索内容');
+                return;
+            }
+            
+            // 检查是否是URL
+            try {
+                const url = new URL(input.startsWith('http') ? input : `https://${input}`);
+                window.open(url.href, '_blank');
+                return;
+            } catch (e) {
+                // 不是有效的URL，进行搜索
+                const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(input)}`;
+                window.open(searchUrl, '_blank');
             }
         }
+        
+        // 添加回车键搜索功能
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchWebsite();
+            }
+        });
     </script>
-
 </body>
 </html>
